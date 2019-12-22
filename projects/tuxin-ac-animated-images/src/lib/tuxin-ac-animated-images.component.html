@@ -1,0 +1,34 @@
+<div id="main">
+
+  <img
+    [@visibilityChanged]="img1AnimState"
+    (load)="img1Loaded()"
+    (@visibilityChanged.done)="img1AnimationEnded($event)"
+    [ngStyle]="{'z-index': img1ZIndex, 'left': imgPosition[img1Image].left, 'top': imgPosition[img1Image].top}"
+    src="../../assets/images-animate/{{img1Image}}.jpg"/>
+
+  <img
+    [@visibilityChanged]="img2AnimState"
+    (load)="img2Loaded()"
+    (@visibilityChanged.done)="img2AnimationEnded($event)"
+    [ngStyle]="{'z-index': img2ZIndex, 'left': imgPosition[img2Image].left, 'top': imgPosition[img2Image].top}"
+    src="../../assets/images-animate/{{img2Image}}.jpg"/>
+
+  <div id="text">
+    <div class="title">
+      TITLE
+    </div>
+    <!--<div class="logo">
+      LOGO
+    </div>-->
+    <div class="promotion">
+      PROMOTION
+    </div>
+    <div class="phone">
+      <div class="inline-phone">
+        <a href="tel:PHONE">PHONE</a>
+      </div>
+    </div>
+  </div>
+
+</div>

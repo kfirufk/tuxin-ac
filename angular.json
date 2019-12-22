@@ -1,0 +1,168 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1, 
+  "newProjectRoot": "projects",
+  "projects": {
+    "tuxin-ac-animated-images": {
+      "projectType": "library",
+      "root": "projects/tuxin-ac-animated-images",
+      "sourceRoot": "projects/tuxin-ac-animated-images/src",
+      "prefix": "tuxin-ac",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/tuxin-ac-animated-images/tsconfig.lib.json",
+            "project": "projects/tuxin-ac-animated-images/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/tuxin-ac-animated-images/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/tuxin-ac-animated-images/src/test.ts",
+            "tsConfig": "projects/tuxin-ac-animated-images/tsconfig.spec.json",
+            "karmaConfig": "projects/tuxin-ac-animated-images/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/tuxin-ac-animated-images/tsconfig.lib.json",
+              "projects/tuxin-ac-animated-images/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "tuxin-ac-animated-images-example-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/tuxin-ac-animated-images-example-app",
+      "sourceRoot": "projects/tuxin-ac-animated-images-example-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/tuxin-ac-animated-images-example-app",
+            "index": "projects/tuxin-ac-animated-images-example-app/src/index.html",
+            "main": "projects/tuxin-ac-animated-images-example-app/src/main.ts",
+            "polyfills": "projects/tuxin-ac-animated-images-example-app/src/polyfills.ts",
+            "tsConfig": "projects/tuxin-ac-animated-images-example-app/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/tuxin-ac-animated-images-example-app/src/favicon.ico",
+              "projects/tuxin-ac-animated-images-example-app/src/assets"
+            ],
+            "styles": [
+              "projects/tuxin-ac-animated-images-example-app/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/tuxin-ac-animated-images-example-app/src/environments/environment.ts",
+                  "with": "projects/tuxin-ac-animated-images-example-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "tuxin-ac-animated-images-example-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "tuxin-ac-animated-images-example-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "tuxin-ac-animated-images-example-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/tuxin-ac-animated-images-example-app/src/test.ts",
+            "polyfills": "projects/tuxin-ac-animated-images-example-app/src/polyfills.ts",
+            "tsConfig": "projects/tuxin-ac-animated-images-example-app/tsconfig.spec.json",
+            "karmaConfig": "projects/tuxin-ac-animated-images-example-app/karma.conf.js",
+            "assets": [
+              "projects/tuxin-ac-animated-images-example-app/src/favicon.ico",
+              "projects/tuxin-ac-animated-images-example-app/src/assets"
+            ],
+            "styles": [
+              "projects/tuxin-ac-animated-images-example-app/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/tuxin-ac-animated-images-example-app/tsconfig.app.json",
+              "projects/tuxin-ac-animated-images-example-app/tsconfig.spec.json",
+              "projects/tuxin-ac-animated-images-example-app/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/tuxin-ac-animated-images-example-app/e2e/protractor.conf.js",
+            "devServerTarget": "tuxin-ac-animated-images-example-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "tuxin-ac-animated-images-example-app:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "tuxin-ac-animated-images"
+}
